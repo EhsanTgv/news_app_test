@@ -39,8 +39,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView(
-        children: _article.map(_buildItem).toList(),
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Future.delayed(const Duration(seconds: 1));
+        },
+        child: ListView(
+          children: _article.map(_buildItem).toList(),
+        ),
       ),
     );
   }
