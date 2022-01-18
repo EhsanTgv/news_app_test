@@ -48,14 +48,24 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildItem(Article article) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: ListTile(
+      child: ExpansionTile(
         title: Text(article.text, style: const TextStyle(fontSize: 24.0)),
-        subtitle: Text("${article.commentCount} comments"),
-        onTap: () async {
-          if (await canLaunch(article.domain)) {
-            launch(article.domain);
-          }
-        },
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("${article.commentCount} comments"),
+              IconButton(
+                icon: const Icon(Icons.launch),
+                onPressed: () async {
+                  if (await canLaunch(article.domain)) {
+                    launch(article.domain);
+                  }
+                },
+              )
+            ],
+          ),
+        ],
       ),
     );
   }
