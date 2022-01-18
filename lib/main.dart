@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_test/src/article.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,7 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
       child: ListTile(
         title: Text(article.text, style: const TextStyle(fontSize: 24.0)),
         subtitle: Text("${article.commentCount} comments"),
-        onTap: () {},
+        onTap: () async {
+          if (await canLaunch(article.domain)) {
+            launch(article.domain);
+          }
+        },
       ),
     );
   }
