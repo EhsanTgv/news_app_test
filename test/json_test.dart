@@ -28,7 +28,7 @@ void main() {
             'https://hacker-news.firebaseio.com/v0/item/${idList.first}.json';
         final storyRes = await http.get(Uri.parse(storyUrl));
         if (res.statusCode == 200) {
-          expect(parseArticle(storyRes.body)?.by, "garrepi");
+          expect(parseArticle(storyRes.body)?.by, "marban");
         }
       }
     }
